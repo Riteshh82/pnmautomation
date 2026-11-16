@@ -1,0 +1,95 @@
+import { test, expect } from '@playwright/test';
+
+test('test', async ({ page }) => {
+  await page.getByText('Master').click();
+  await page.locator('div').filter({ hasText: /^Service Schedule$/ }).nth(1).click();
+  await expect(page.getByRole('navigation', { name: 'pagination navigation' })).toBeVisible();
+
+  await page.getByRole('button', { name: 'Add' }).click();
+  await page.getByRole('combobox', { name: 'Equipment Category' }).click();
+  await page.getByRole('combobox', { name: 'Equipment Category' }).fill('jcb');
+  await page.getByRole('option', { name: 'JCB hydraulic' }).click();
+  await expect(page.getByRole('textbox', { name: 'Secondary Meter Reading' })).toBeVisible();
+
+  await page.getByRole('combobox', { name: 'Select Manufacture' }).click();
+  await page.getByRole('combobox', { name: 'Select Manufacture' }).fill('tata');
+  await page.getByRole('option', { name: 'TATA STAR' }).click();
+  await page.getByRole('combobox', { name: 'Model' }).click();
+  await page.getByRole('combobox', { name: 'Model' }).fill('32');
+  await page.getByRole('option', { name: '+1S -LP712/42 BSIII' }).click();
+  await page.locator('div').filter({ hasText: /^isActive$/ }).nth(1).click();
+  await page.locator('div').filter({ hasText: /^isActive$/ }).nth(1).click();
+  await page.getByRole('checkbox').nth(1).uncheck();
+  await page.getByRole('checkbox').nth(1).check();
+  await page.getByRole('checkbox').nth(2).check();
+  await page.getByRole('textbox', { name: 'Service Name' }).click();
+  await page.getByRole('textbox', { name: 'Service Name' }).fill('service 1');
+  await page.getByRole('textbox', { name: 'Period (In Days)' }).click();
+  await page.getByRole('textbox', { name: 'Period (In Days)' }).fill('200');
+  await page.getByRole('textbox', { name: 'Primary Reading' }).click();
+  await page.getByRole('textbox', { name: 'Primary Reading' }).fill('200');
+  await page.getByRole('textbox', { name: 'Secondary Meter Reading' }).click();
+  await page.getByRole('textbox', { name: 'Secondary Meter Reading' }).fill('40');
+  await expect(page.getByRole('button', { name: 'Clear' })).toBeVisible();
+
+  await page.getByRole('combobox', { name: 'Select task' }).click();
+  await expect(page.getByRole('button', { name: 'Close' })).toBeVisible();
+
+  await page.getByRole('option', { name: 'mobil diesel oil' }).click();
+  await page.getByRole('combobox', { name: 'Search Item Name/Code' }).click();
+  await expect(page.getByRole('button', { name: 'Close' })).toBeVisible();
+
+  await page.getByRole('option', { name: 'Grease AP3 Crimson Valvoline' }).click();
+  await page.getByRole('textbox', { name: 'Quantity' }).click();
+  await page.getByRole('textbox', { name: 'Quantity' }).fill('2');
+  await page.getByRole('button', { name: 'Add', exact: true }).click();
+  await expect(page.getByRole('row', { name: 'mobil diesel oil Grease AP3' })).toBeVisible();
+
+  await page.getByRole('textbox', { name: 'Day Before' }).click();
+  await page.getByRole('textbox', { name: 'Day Before' }).fill('10');
+  await page.getByRole('textbox', { name: 'Reading Before Alert', exact: true }).click();
+  await page.getByRole('textbox', { name: 'Reading Before Alert', exact: true }).fill('20');
+  await page.getByRole('textbox', { name: 'Secondary Reading Before Alert' }).click();
+  await page.getByRole('textbox', { name: 'Secondary Reading Before Alert' }).fill('12');
+  await page.getByRole('textbox', { name: 'Alert Message' }).click();
+  await page.getByRole('textbox', { name: 'Alert Message' }).fill('seervice gonnaa comming soon');
+  await page.getByRole('textbox', { name: 'Remark' }).click();
+  await page.getByRole('textbox', { name: 'Remark' }).fill('remark');
+  await page.getByRole('button', { name: 'Add Template' }).click();
+  await expect(page.getByRole('img', { name: 'deleteIcon' })).toBeVisible();
+
+  await page.getByRole('checkbox').nth(4).check();
+  await page.getByRole('textbox', { name: 'Service Name' }).nth(1).click();
+  await page.getByRole('textbox', { name: 'Service Name' }).nth(1).fill('service 2');
+  await page.getByRole('textbox', { name: 'Period (In Days)' }).nth(1).click();
+  await page.getByRole('textbox', { name: 'Period (In Days)' }).nth(1).fill('300');
+  await page.getByRole('textbox', { name: 'Primary Reading' }).nth(1).click();
+  await page.getByRole('textbox', { name: 'Primary Reading' }).nth(1).fill('300');
+  await page.getByRole('textbox', { name: 'Secondary Meter Reading' }).nth(1).click();
+  await page.getByRole('textbox', { name: 'Secondary Meter Reading' }).nth(1).fill('40');
+  await expect(page.getByRole('button', { name: 'Clear' })).toBeVisible();
+
+  await page.getByRole('combobox', { name: 'Select task' }).nth(1).click();
+  await expect(page.getByRole('button', { name: 'Close' })).toBeVisible();
+
+  await page.getByRole('option', { name: 'Change old engine oil' }).click();
+  await page.locator('div:nth-child(4) > .MuiGrid-root.MuiGrid-container.MuiGrid-spacing-xs-2 > div:nth-child(2) > .MuiBox-root.css-1d4bm84 > .MuiBox-root.css-164r41r > .MuiGrid-root.MuiGrid-container > div:nth-child(2) > .MuiAutocomplete-root > .MuiFormControl-root > .MuiInputBase-root').click();
+  await page.getByRole('combobox', { name: 'Search Item Name/Code' }).nth(1).fill('mobi');
+  await page.getByRole('option', { name: 'Mobile Service Van' }).click();
+  await page.getByRole('textbox', { name: 'Quantity' }).nth(1).click();
+  await page.getByRole('textbox', { name: 'Quantity' }).nth(1).fill('10');
+  await page.getByRole('button', { name: 'Add' }).nth(1).click();
+  await expect(page.getByRole('row', { name: 'Change old engine oil Mobile' })).toBeVisible();
+
+  await page.getByRole('textbox', { name: 'Day Before' }).nth(1).click();
+  await page.getByRole('textbox', { name: 'Day Before' }).nth(1).fill('10');
+  await page.getByRole('textbox', { name: 'Reading Before Alert' }).nth(2).click();
+  await page.getByRole('textbox', { name: 'Reading Before Alert' }).nth(2).fill('0');
+  await page.getByRole('textbox', { name: 'Secondary Reading Before Alert' }).nth(1).click();
+  await page.getByRole('textbox', { name: 'Secondary Reading Before Alert' }).nth(1).fill('10');
+  await page.getByRole('textbox', { name: 'Alert Message' }).nth(1).click();
+  await page.getByRole('textbox', { name: 'Alert Message' }).nth(1).fill('alrt message');
+  await page.getByRole('textbox', { name: 'Remark' }).nth(1).click();
+  await page.getByRole('textbox', { name: 'Remark' }).nth(1).fill('remark');
+  await page.getByRole('button', { name: 'Save' }).click();
+});

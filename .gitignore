@@ -1,0 +1,26 @@
+# Dependencies
+node_modules/
+
+# Build output
+dist/
+
+# Playwright artefacts
+/test-results/
+/playwright-report/
+/blob-report/
+/playwright/.cache/
+/playwright/.auth/
+
+# Credentials — NEVER commit these
+.env.local
+.env.*.local
+.env
+
+# OS junk
+.DS_Store
+Thumbs.db
+
+# IDE settings (keep or remove per team preference)
+.vscode/
+.idea/
+
