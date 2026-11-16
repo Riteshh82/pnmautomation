@@ -18,7 +18,8 @@ module.exports = defineConfig({
   timeout: 120_000,
   expect: { timeout: 15_000 },
   reporter: [
-    ['html', { open: 'on-failure', outputFolder: 'playwright-report' }],
+    ['./utils/tableReporter.js'],
+    ['html', { open: 'never', outputFolder: 'playwright-report' }],
     ['list'],
     ['json', { outputFile: 'test-results/results.json' }],
     ...(process.env.CI ? [['github']] : []),

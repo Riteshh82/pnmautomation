@@ -9,16 +9,23 @@ const LOGIN_TIMEOUT_MS = 60000;
 const API_TIMEOUT_MS = 30000;
 
 class ApiClient {
+  static cachedToken = null;
+
   /**
    * @param {import('@playwright/test').APIRequestContext} request
    */
   constructor(request) {
     this.request = request;
     this.apiBase = process.env.API_BASE_URL;
-    this.token = '';
+    this.token = ApiClient.cachedToken || '';
   }
 
-  async login() {
+  async login(force = false) {
+    if (!force && ApiClient.cachedToken) {
+      this.token = ApiClient.cachedToken;
+      return this.token;
+    }
+
     const res = await this.request.post(process.env.SSO_LOGIN_URL, {
       headers: BASE_HEADERS,
       timeout: LOGIN_TIMEOUT_MS,
@@ -40,6 +47,8 @@ class ApiClient {
     if (!token) throw new Error('Token not found');
 
     this.token = token;
+    ApiClient.cachedToken = token;
+    return token;
   }
 
   /**
